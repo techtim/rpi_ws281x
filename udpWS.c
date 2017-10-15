@@ -100,7 +100,7 @@ ws2811_t ledstring =
     },
 };
 
-static void ctrl_c_handler(int signum) { ws2811_fini(&ledstring); }
+static void ctrl_c_handler() { ws2811_fini(&ledstring); }
 
 static void setup_handlers(void)
 {
@@ -111,7 +111,7 @@ static void setup_handlers(void)
     sigaction(SIGKILL, &sa, NULL);
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     int ret = 0;
     setup_handlers();
