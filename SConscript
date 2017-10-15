@@ -50,15 +50,15 @@ tools_env['LIBS'].append(ws2811_lib)
 ws2811_slib = tools_env.SharedLibrary('libws2811', lib_srcs)
 
 # Test Program
-srcs = Split('''
-    main.c
+srcs = Split(''' // main.c
+    udpWS.c
 ''')
 
 objs = []
 for src in srcs:
-   objs.append(tools_env.Object(src))
+    objs.append(tools_env.Object(src))
 
-test = tools_env.Program('test', objs + tools_env['LIBS'])
+test = tools_env.Program('udpWS', objs + tools_env['LIBS'])
 
 Default([test, ws2811_lib])
 
@@ -73,7 +73,7 @@ debian_files = [
 ]
 
 package_files_desc = [
-    [ '/usr/lib', ws2811_slib ],
+    ['/usr/lib', ws2811_slib],
 ]
 
 package_files = []
@@ -89,7 +89,6 @@ for deb_file in debian_files:
     )
 
 package = tools_env.Command('%s.deb' % package_name, package_files,
-                            'cd %s; dpkg-deb --build %s' % (Dir('.').abspath, package_name));
+                            'cd %s; dpkg-deb --build %s' % (Dir('.').abspath, package_name))
 
 Alias("deb", package)
-
