@@ -50,7 +50,7 @@ tools_env['LIBS'].append(ws2811_lib)
 ws2811_slib = tools_env.SharedLibrary('libws2811', lib_srcs)
 
 # Test Program
-srcs = Split(''' // main.c
+srcs = Split('''
     udpWS.c
 ''')
 
